@@ -6,7 +6,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzTableModule } from 'ng-zorro-antd/table';
-
+import { NzGridModule } from 'ng-zorro-antd/grid';
 @NgModule({
   declarations: [],
   imports: [
@@ -18,7 +18,8 @@ import { NzTableModule } from 'ng-zorro-antd/table';
     NzIconModule,
     NzListModule,
     NzSkeletonModule,
-    NzTableModule
+    NzTableModule,
+    NzGridModule
   ]
 })
 export class AntDesignModule { }

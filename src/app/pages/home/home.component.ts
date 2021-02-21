@@ -3,9 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { NzTableFilterFn, NzTableFilterList, NzTableSortFn, NzTableSortOrder } from 'ng-zorro-antd/table';
 interface ItemData {
   id: number;
-  name: string;
-  age: number;
-  address: string;
+  from : {name: string,email: string,substr:string}
+  body: string;
+  subject: string;
 }
 interface ColumnItem {
   name: string;
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
   data: any[] = [];
   list: Array<{ loading: boolean; name: any }> = [];
   evOver: any ;
-  datas :any = []
+  datas : Array<ItemData> = [];
   listOfData: ItemData[] = [];
   listOfColumns: ColumnItem[] = [
     {
@@ -85,23 +85,29 @@ export class HomeComponent implements OnInit {
   }
 
   onItemChecked(id: number, checked: boolean): void {
+    console.log(id);
+    
     this.updateCheckedSet(id, checked);
     this.refreshCheckedStatus();
   }
 
   onAllChecked(value: boolean): void {
-    this.listOfCurrentPageData.forEach(item => this.updateCheckedSet(item.id, value));
+    console.log(value);
+    
+    this.datas.forEach(item => this.updateCheckedSet(item.id, value));
+    console.log(this.datas);
+    
     this.refreshCheckedStatus();
   }
 
-  onCurrentPageDataChange($event: ReadonlyArray<ItemData>): void {
-    this.listOfCurrentPageData = $event;
+  onCurrentPageDataChange($event: Array<ItemData>): void {
+    this.datas = $event;
     this.refreshCheckedStatus();
   }
 
   refreshCheckedStatus(): void {
-    this.checked = this.listOfCurrentPageData.every(item => this.setOfCheckedId.has(item.id));
-    this.indeterminate = this.listOfCurrentPageData.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
+    this.checked = this.datas.every(item => this.setOfCheckedId.has(item.id));
+    this.indeterminate = this.datas.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
   }
   constructor(private http: HttpClient) { 
     
@@ -120,6 +126,7 @@ export class HomeComponent implements OnInit {
   listMail():void {
     const datas = [
       {
+        id: 1,
         from : {
           name : "Now TV",
           email : "nowtv@test.com"
@@ -128,6 +135,7 @@ export class HomeComponent implements OnInit {
         body : "Oscar winners Sir Anthony Hopkins and Ed Harris join an impressive cast boasting the likes of Thandie Newton,James Marsden and Jeffrey Wright."
       },
       {
+        id: 2,
         from : {
           name : "Investopedia Terms",
           email : "investopedia@test.com"
@@ -136,6 +144,25 @@ export class HomeComponent implements OnInit {
         body : "Fibonacci retracement is a term used in technical analysis that refers to areas of support (pricestops going lower) or resistance (price stops going higher)."
       },
       {
+        id: 3,
+        from : {
+          name : "ASICS Greater Manchester Marathon ",
+          email : "events@human-race.co.uk"
+        },
+        subject : "Your chance to take on the marathon",
+        body : "Do you feel inspired to take on one of Europe's most highly regarded and popular marathons?"
+      },
+      {
+        id: 4,
+        from : {
+          name : "ASICS Greater Manchester Marathon ",
+          email : "events@human-race.co.uk"
+        },
+        subject : "Your chance to take on the marathon",
+        body : "Do you feel inspired to take on one of Europe's most highly regarded and popular marathons?"
+      },
+      {
+        id: 5,
         from : {
           name : "ASICS Greater Manchester Marathon ",
           email : "events@human-race.co.uk"
@@ -160,19 +187,19 @@ export class HomeComponent implements OnInit {
     return item.name;
   }
   
-  getData(callback: (res: any) => void): void {
-    this.http.get(fakeDataUrl).subscribe((res: any) => callback(res));
-  }
+  // getData(callback: (res: any) => void): void {
+  //   this.http.get(fakeDataUrl).subscribe((res: any) => callback(res));
+  // }
 
-  onLoadMore(): void {
-    this.loadingMore = true;
-    this.list = this.data.concat([...Array(count)].fill({}).map(() => ({ loading: true, name: {} })));
-    this.http.get(fakeDataUrl).subscribe((res: any) => {
-      this.data = this.data.concat(res.results);
-      this.list = [...this.data];
-      this.loadingMore = false;
-    });
-  }
+  // onLoadMore(): void {
+  //   this.loadingMore = true;
+  //   this.list = this.data.concat([...Array(count)].fill({}).map(() => ({ loading: true, name: {} })));
+  //   this.http.get(fakeDataUrl).subscribe((res: any) => {
+  //     this.data = this.data.concat(res.results);
+  //     this.list = [...this.data];
+  //     this.loadingMore = false;
+  //   });
+  // }
 
   edit(item: any): void {
     alert('Edit')
