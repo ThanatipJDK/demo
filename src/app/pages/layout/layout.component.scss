@@ -1,0 +1,51 @@
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+}
+
+nz-content {
+  padding: 10px;
+  margin: 24px 16px 0;
+  background: #fff;
+  height: 100%;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
+}
+.layout {
+  min-height: 100vh;
+}
+
+.inner-content {
+  padding: 0px;
+  // background: #fff;
+  min-height: 360px;
+}
+
+nz-footer {
+  text-align: center;
+}
+.selected {
+  border-right: 3px solid #1890ff;
+  background-color: #e6f7ff;
+  color: #1890ff;
+}

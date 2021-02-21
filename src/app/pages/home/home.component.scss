@@ -1,0 +1,39 @@
+.container {
+  .demo-loadmore-list {
+    min-height: 350px;
+  }
+  .loadmore {
+    text-align: center;
+    margin-top: 12px;
+    height: 32px;
+    line-height: 32px;
+  }
+
+  .btn-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+  }
+
+  tbody {
+    td {
+      p {
+        margin: 0;
+        &.name {
+          font-weight: 500;
+        }
+        &.subject {
+          font-weight: 500;
+        }
+        &.description {
+          font-size: 0.8rem;
+          // font-weight: 400;
+        }
+      }
+      .xY.bq4 {
+        display: none;
+      }
+    }
+  }
+}
