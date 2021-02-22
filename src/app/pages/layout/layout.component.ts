@@ -31,8 +31,6 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     
     this.menuItems = ROUTES.filter((menuItem) => menuItem);
-    console.log(this.menuItems);
-   
     
   }
   clickToPage(page : string){

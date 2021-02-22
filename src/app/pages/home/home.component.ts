@@ -7,6 +7,7 @@ interface ItemData {
   body: string;
   subject: string;
 }
+
 interface ColumnItem {
   name: string;
   sortOrder: NzTableSortOrder | null;
@@ -19,8 +20,7 @@ interface DataItem {
   age: number;
   address: string;
 }
-const count = 5;
-const fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
   list: Array<{ loading: boolean; name: any }> = [];
   evOver: any ;
   datas : Array<ItemData> = [];
-  listOfData: ItemData[] = [];
+ 
   listOfColumns: ColumnItem[] = [
     {
       name: 'Name',
@@ -48,67 +48,13 @@ export class HomeComponent implements OnInit {
     },
     
   ];
-  listOfSelection = [
-    {
-      text: 'Select All Row',
-      onSelect: () => {
-        this.onAllChecked(true);
-      }
-    },
-    {
-      text: 'Select Odd Row',
-      onSelect: () => {
-        this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.id, index % 2 !== 0));
-        this.refreshCheckedStatus();
-      }
-    },
-    {
-      text: 'Select Even Row',
-      onSelect: () => {
-        this.listOfCurrentPageData.forEach((data, index) => this.updateCheckedSet(data.id, index % 2 === 0));
-        this.refreshCheckedStatus();
-      }
-    }
-  ];
+
   hoverIndex:number = -1;
   substring : any;
   checked = false;
   indeterminate = false;
-  listOfCurrentPageData: ReadonlyArray<ItemData> = [];
   setOfCheckedId = new Set<number>();
-  updateCheckedSet(id: number, checked: boolean): void {
-    if (checked) {
-      this.setOfCheckedId.add(id);
-    } else {
-      this.setOfCheckedId.delete(id);
-    }
-  }
 
-  onItemChecked(id: number, checked: boolean): void {
-    console.log(id);
-    
-    this.updateCheckedSet(id, checked);
-    this.refreshCheckedStatus();
-  }
-
-  onAllChecked(value: boolean): void {
-    console.log(value);
-    
-    this.datas.forEach(item => this.updateCheckedSet(item.id, value));
-    console.log(this.datas);
-    
-    this.refreshCheckedStatus();
-  }
-
-  onCurrentPageDataChange($event: Array<ItemData>): void {
-    this.datas = $event;
-    this.refreshCheckedStatus();
-  }
-
-  refreshCheckedStatus(): void {
-    this.checked = this.datas.every(item => this.setOfCheckedId.has(item.id));
-    this.indeterminate = this.datas.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
-  }
   constructor(private http: HttpClient) { 
     
   }
@@ -116,11 +62,6 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.listMail();
     
-    // this.getData((res: any) => {
-    //   this.data = res.results;
-    //   this.list = res.results;
-    //   this.initLoading = false;
-    // });
   }
   
   listMail():void {
@@ -172,21 +113,52 @@ export class HomeComponent implements OnInit {
       }
     ]
     for (const a of datas) {
-      console.log(a);
-      
       const substr = a.from.name.substring(0,1)
       this.datas.push({...a,from:{...a.from,substr:substr}})
     }
-    console.log(this.datas);
   }
 
-  onHover(i:number){
+  onHover(i:number):void{
+    // this.hoverIndex = i;
     this.hoverIndex = i;
   }
   trackByName(_: number, item: ColumnItem): string {
     return item.name;
   }
   
+  action(type:string,index:number):void {
+    alert(type+' '+index)
+  }
+  updateCheckedSet(id: number, checked: boolean): void {
+    if (checked) {
+      this.setOfCheckedId.add(id);
+      
+    } else {
+      this.setOfCheckedId.delete(id);
+    }
+  }
+
+  onItemChecked(id: number, checked: boolean): void {
+    
+    this.updateCheckedSet(id, checked);
+    this.refreshCheckedStatus();
+  }
+
+  onAllChecked(value: boolean): void {
+   
+    this.datas.forEach(item => this.updateCheckedSet(item.id, value));
+    this.refreshCheckedStatus();
+  }
+
+  onCurrentPageDataChange($event: Array<ItemData>): void {
+    this.datas = $event;
+    this.refreshCheckedStatus();
+  }
+
+  refreshCheckedStatus(): void {
+    this.checked = this.datas.every(item => this.setOfCheckedId.has(item.id));
+    this.indeterminate = this.datas.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
+  }
   // getData(callback: (res: any) => void): void {
   //   this.http.get(fakeDataUrl).subscribe((res: any) => callback(res));
   // }

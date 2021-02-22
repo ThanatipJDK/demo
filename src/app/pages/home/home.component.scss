@@ -22,12 +22,33 @@
         margin: 0;
         &.name {
           font-weight: 500;
+          display: inline-block;
+          word-wrap: break-word;
+          overflow: hidden;
+          display: -webkit-box;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
         }
         &.subject {
           font-weight: 500;
+          display: inline-block;
+          word-wrap: break-word;
+          overflow: hidden;
+          display: -webkit-box;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
         }
         &.description {
           font-size: 0.8rem;
+          display: inline-block;
+          word-wrap: break-word;
+          overflow: hidden;
+          display: -webkit-box;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
           // font-weight: 400;
         }
       }
