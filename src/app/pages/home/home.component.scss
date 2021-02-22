@@ -52,8 +52,12 @@
           // font-weight: 400;
         }
       }
-      .xY.bq4 {
-        display: none;
+      ul {
+        i {
+          &.icon {
+            cursor: pointer;
+          }
+        }
       }
     }
   }

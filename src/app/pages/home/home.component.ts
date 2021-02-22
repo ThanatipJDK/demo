@@ -131,9 +131,11 @@ export class HomeComponent implements OnInit {
   }
   updateCheckedSet(id: number, checked: boolean): void {
     if (checked) {
+      alert('checked ' +id)
       this.setOfCheckedId.add(id);
       
     } else {
+      alert('unchecked ' +id)
       this.setOfCheckedId.delete(id);
     }
   }

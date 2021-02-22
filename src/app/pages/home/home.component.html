@@ -30,12 +30,12 @@
             </td>
             <td nzAlign="right">
               <ul nz-list-item-actions *ngIf="i === hoverIndex" [attr.dd-index]="i" style="margin-left: 0 !important;"> <!--*ngIf="i === hoverIndex" [attr.dd-index]="i"-->
-                <nz-list-item-action ><i nz-icon nzType="delete" nzTheme="outline" (click)="action('delete',i)"></i></nz-list-item-action>
-                <nz-list-item-action><i nz-icon nzType="mail" nzTheme="outline" (click)="action('unread',i)"></i></nz-list-item-action>
-                <nz-list-item-action><i nz-icon nzType="flag" nzTheme="outline" (click)="action('mark',i)"></i></nz-list-item-action>
-                <nz-list-item-action><i nz-icon nzType="pushpin" nzTheme="outline" (click)="action('pin',i)"></i> </nz-list-item-action>
+                <nz-list-item-action ><i class="icon" nz-icon nzType="delete" nzTheme="outline" (click)="action('delete',i)"></i></nz-list-item-action>
+                <nz-list-item-action><i class="icon" nz-icon nzType="mail" nzTheme="outline" (click)="action('unread',i)"></i></nz-list-item-action>
+                <nz-list-item-action><i class="icon" nz-icon nzType="flag" nzTheme="outline" (click)="action('mark',i)"></i></nz-list-item-action>
+                <nz-list-item-action><i class="icon" nz-icon nzType="pushpin" nzTheme="outline" (click)="action('pin',i)"></i> </nz-list-item-action>
               </ul>
-              <p>11:00</p>
+              <p>11:0{{i}}</p>
             </td>
           </tr>
         </tbody>
