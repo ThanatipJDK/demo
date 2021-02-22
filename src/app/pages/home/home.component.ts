@@ -51,8 +51,8 @@ export class HomeComponent implements OnInit {
 
   hoverIndex:number = -1;
   substring : any;
-  checked = false;
-  indeterminate = false;
+  checked :boolean = false;
+  indeterminate: boolean= false;
   setOfCheckedId = new Set<number>();
 
   constructor(private http: HttpClient) { 
