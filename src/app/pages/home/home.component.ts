@@ -161,47 +161,4 @@ export class HomeComponent implements OnInit {
     this.checked = this.datas.every(item => this.setOfCheckedId.has(item.id));
     this.indeterminate = this.datas.some(item => this.setOfCheckedId.has(item.id)) && !this.checked;
   }
-  // getData(callback: (res: any) => void): void {
-  //   this.http.get(fakeDataUrl).subscribe((res: any) => callback(res));
-  // }
-
-  // onLoadMore(): void {
-  //   this.loadingMore = true;
-  //   this.list = this.data.concat([...Array(count)].fill({}).map(() => ({ loading: true, name: {} })));
-  //   this.http.get(fakeDataUrl).subscribe((res: any) => {
-  //     this.data = this.data.concat(res.results);
-  //     this.list = [...this.data];
-  //     this.loadingMore = false;
-  //   });
-  // }
-
-  edit(item: any): void {
-    alert('Edit')
-    // this.msg.success(item.email);
-  }
-  // over(data:any, ev:boolean, index :number):void {
-  //   // console.log('over==> ',index);
-  //   const findIndex = this.datas.findIndex((item:any) => {
-  //     return data.from.name === item.from.name
-  //   })
-  //   const find = this.datas.find((item:any) => {
-  //     return data.from.name === item.from.name
-  //   })
- 
-  //   if (findIndex === index) {
-  //     this.evOver = ev
-  //   }
-    
-  // }
-  // out(data:any, ev:boolean,index :number): void  {
-  //   // console.log('out==> ',index);
-  //   const findIndex = this.datas.findIndex((item:any) => {
-  //     return data.from.name === item.from.name
-  //   })
-    
-  //   if (findIndex === index) {
-  //     this.evOver = ev
-  //   }
-  // }
-
 }
